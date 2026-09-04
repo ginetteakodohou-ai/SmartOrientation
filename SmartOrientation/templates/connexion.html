@@ -105,6 +105,16 @@
             background-color: #1f5148;
         }
 
+        .message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+        }
+
     </style>
 </head>
 <body>
@@ -117,6 +127,14 @@
                     SmartOrientation
                 </div>
 
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
                 <p>
                     Connectez-vous à votre compte
                     pour accéder à votre espace.
@@ -124,11 +142,7 @@
 
             </div>
             <form method="POST">
-                {% if messages %}
-                {% for message in messages %}
-                <p style="color:red;">{{ message }}</p>
-                {% endfor %}
-                {% endif %}
+                {% csrf_token %}
                 <div class="champ">
                     <label>
                         Adresse e-mail
