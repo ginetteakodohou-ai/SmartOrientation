@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        
+        }
+        .info{
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .label {
+            font-weight: bold;
+            color: #2e2a2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mon Profil</h1>
+    <div class="info">
+         <span class="label">Nom: </span>
+    <span id="nom"></span>
+    </div>
+    <div class="info">
+        <span class="label">Prénom: </span>
+        <span id="prenom"></span>
+    </div>
+    <div class="info">
+        <span class="label">Email: </span>
+        <span id="email"></span>
+    </div>
+    <div class="info">
+        <span class="label">Téléphone: </span>
+        <span id="tel"></span>
+    </div>
+    <div class="info">
+        <span class="label">Série: </span>
+        <span id="série"></span>
+    </div>
+     <div class="info">
+        <span class="label">Année de BAC: </span>
+        <span id="annee-bac"></span>
+    </div>
+     <div class="info">
+        <span class="label">Moyenne générale: </span>
+        <span id="moyenne-generale"></span>
+    </div>
+
+    <a href="inscription.html">Modifier les informations</a>
+
+    <script>
+        // Récupérer les informations du profil depuis le stockage local
+        window.addEventListener('DOMContentLoaded', () => {
+        const nom = localStorage.getItem('userNom');
+        const prenom = localStorage.getItem('userPrenom');
+        const email = localStorage.getItem('userEmail');
+        const tel = localStorage.getItem('userTel');
+        const serie = localStorage.getItem('userSerie');
+        const anneeBac = localStorage.getItem('userAnneeBac');
+        const moyenneGenerale = localStorage.getItem('userMoyenneGenerale');
+        })
+
+        // Afficher les informations dans les éléments correspondants
+        if (nom&& prenom && email && tel && serie && anneeBac && moyenneGenerale) {
+            document.getElementById('nom').textContent = nom;
+            document.getElementById('prenom').textContent = prenom;
+            document.getElementById('email').textContent = email;
+            document.getElementById('tel').textContent = tel;
+            document.getElementById('série').textContent = serie;
+            document.getElementById('annee-bac').textContent = anneeBac;
+            document.getElementById('moyenne-generale').textContent = moyenneGenerale;
+        } 
+        else {
+            // Rediriger vers la page d'inscription si les informations ne sont pas disponibles
+            document.querySelector('card').innerHTML = '<p>Les informations du profil ne sont pas disponibles. Veuillez vous inscrire.</p>';
+            window.location.href = 'inscription.html';
+        }
+    </script>
+       
+
+    
+    
+
+   
+</body>
+</html>
