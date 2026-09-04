@@ -638,208 +638,115 @@ let matieresActuelles = [];
    ÉTAPE 1 — VALIDATION DES NOTES
    ========================================== */
 
-function validerNotes() {
+  function validerNotes() {
 
-  const erreurs = [];
-  const notes = {};
-
-  matieresActuelles.forEach(mat => {
-
-    const champ = document.querySelector(`[name="${mat.code}"]`);
-    const valeurBrute = champ ? champ.value.trim() : '';
-
-    // 1. La note existe (champ non vide)
-    if (valeurBrute === '') {
-      erreurs.push(`${mat.nom} : la note est manquante`);
-      return;
-    }
-
-    // 2. C'est bien un nombre
-    const note = Number(valeurBrute);
-
-    if (Number.isNaN(note)) {
-      erreurs.push(`${mat.nom} : "${valeurBrute}" n'est pas un nombre valide`);
-      return;
-    }
-
-    // 3. Comprise entre 0 et 20
-    if (note < 0 || note > 20) {
-      erreurs.push(`${mat.nom} : la note doit être comprise entre 0 et 20 (reçu : ${note})`);
-      return;
-    }
-
-    notes[mat.code] = note;
-  });
-
-  // 4. Aucune matière oubliée : si notes.length !== matieresActuelles.length, il en manque
-  const valide = erreurs.length === 0 &&
-                 Object.keys(notes).length === matieresActuelles.length;
-
-  return { valide, erreurs, notes };
-}
-
-function afficherErreurs(erreurs) {
-
-  const bloc = document.getElementById('erreurs-notes');
-
-  if (erreurs.length === 0) {
-    bloc.style.display = 'none';
-    bloc.innerHTML = '';
-    return;
-  }
-
-  bloc.innerHTML =
-    '<strong>Corrige les erreurs suivantes :</strong><ul class="mb-0 mt-2">' +
-    erreurs.map(e => `<li>${e}</li>`).join('') +
-    '</ul>';
-
-  bloc.style.display = 'block';
-  }
-
-  /* ==========================================
-     CALCUL DE LA MOYENNE PONDÉRÉE
-     ========================================== */
-
-  function calculerMoyennePonderee() {
-
-    let sommePoints = 0;
-
-    let sommeCoefs = 0;
-
+    const erreurs = [];
+    const notes = {};
 
     matieresActuelles.forEach(mat => {
 
-      const champNote =
-        document.querySelector(
-          `[name="${mat.code}"]`
-        );
+      const champ = document.querySelector(`[name="${mat.code}"]`);
+      const valeurBrute = champ ? champ.value.trim() : '';
 
-      const note =
-        parseFloat(champNote?.value) || 0;
-
-
-      const coefficient =
-        parseFloat(mat.coefficient) || 0;
-
-
-      sommePoints += note * coefficient;
-
-      sommeCoefs += coefficient;
-
-    });
-
-
-    return sommeCoefs > 0
-      ? sommePoints / sommeCoefs
-      : 0;
-  }
-
-
-  /* ==========================================
-     ENVOI DU FORMULAIRE
-     ========================================== */
-
-  document.getElementById('orientationForm')
-    .addEventListener('submit', function(e) {
-
-      e.preventDefault();
-
-
-      if (matieresActuelles.length === 0) {
-
-        alert(
-          'Les matières correspondant à cette série ne sont pas disponibles.'
-        );
-
+      // 1. La note existe (champ non vide)
+      if (valeurBrute === '') {
+        erreurs.push(`${mat.nom} : la note est manquante`);
         return;
       }
 
+      // 2. C'est bien un nombre
+      const note = Number(valeurBrute);
 
-      const moyennePonderee =
-        calculerMoyennePonderee().toFixed(2);
+      if (Number.isNaN(note)) {
+        erreurs.push(`${mat.nom} : "${valeurBrute}" n'est pas un nombre valide`);
+        return;
+      }
 
+      // 3. Comprise entre 0 et 20
+      if (note < 0 || note > 20) {
+        erreurs.push(`${mat.nom} : la note doit être comprise entre 0 et 20 (reçu : ${note})`);
+        return;
+      }
 
-      /*
-       * POUR LE MOMENT :
-       * résultats fictifs.
-       *
-       * Cette partie sera remplacée par
-       * les résultats envoyés par Django.
-       */
-
-      const resultats = [
-        {
-          nom: "Informatique",
-          score: 90
-        },
-        {
-          nom: "Mathématiques",
-          score: 85
-        },
-        {
-          nom: "Physique",
-          score: 78
-        }
-      ];
-
-
-      const container =
-        document.getElementById('barsContainer');
-
-      container.innerHTML = '';
-
-
-      resultats.forEach(r => {
-
-        container.innerHTML += `
-
-          <div class="bar-item">
-
-            <div class="bar-label">
-
-              <span>
-                ${r.nom}
-              </span>
-
-              <span>
-                ${r.score}%
-              </span>
-
-            </div>
-
-            <div class="bar-bg">
-
-              <div
-                class="bar-fill"
-                style="width:${r.score}%"
-              ></div>
-
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-
-      document.getElementById('explication').textContent =
-        `Moyenne pondérée calculée : ${moyennePonderee}/20. ` +
-        `Cette orientation correspond à votre profil grâce ` +
-        `à vos résultats scolaires et vos centres d'intérêt.`;
-
-
-      document.getElementById('resultat').style.display =
-        'block';
-
-
-      document
-        .getElementById('resultat')
-        .scrollIntoView({
-          behavior: 'smooth'
-        });
-
+      notes[mat.code] = note;
     });
+
+    // 4. Aucune matière oubliée : si notes.length !== matieresActuelles.length, il en manque
+    const valide = erreurs.length === 0 &&
+                  Object.keys(notes).length === matieresActuelles.length;
+
+    return { valide, erreurs, notes };
+  }
+
+  function afficherErreurs(erreurs) {
+
+    const bloc = document.getElementById('erreurs-notes');
+
+    if (erreurs.length === 0) {
+      bloc.style.display = 'none';
+      bloc.innerHTML = '';
+      return;
+    }
+
+    bloc.innerHTML =
+      '<strong>Corrige les erreurs suivantes :</strong><ul class="mb-0 mt-2">' +
+      erreurs.map(e => `<li>${e}</li>`).join('') +
+      '</ul>';
+
+    bloc.style.display = 'block';
+  }
+
+  /* ==========================================
+   ÉTAPE 2 — CALCUL DE LA MOYENNE PONDÉRÉE
+   (coefficients toujours issus de matieresActuelles,
+    donc de la BDD via Django — jamais en dur)
+   ========================================== */
+
+  function calculerMoyennePonderee(notes) {
+
+    let sommePoints = 0;
+    let sommeCoefs = 0;
+
+    matieresActuelles.forEach(mat => {
+
+      const note = notes[mat.code];
+      const coefficient = parseFloat(mat.coefficient) || 0;
+
+      sommePoints += note * coefficient;
+      sommeCoefs += coefficient;
+    });
+
+    return sommeCoefs > 0 ? sommePoints / sommeCoefs : 0;
+  }
+
+  /* ==========================================
+   ENVOI DU FORMULAIRE
+   ========================================== */
+
+  document.getElementById('orientationForm').addEventListener('submit', function (e) {
+
+    e.preventDefault();
+
+    if (matieresActuelles.length === 0) {
+      alert('Les matières correspondant à cette série ne sont pas disponibles.');
+      return;
+    }
+
+    const { valide, erreurs, notes } = validerNotes();
+
+    afficherErreurs(erreurs);
+
+    if (!valide) {
+      return; // pas de calcul tant que les notes ne sont pas propres
+    }
+
+    const moyennePonderee = calculerMoyennePonderee(notes).toFixed(2);
+
+    console.log('Notes validées :', notes);
+    console.log('Moyenne pondérée :', moyennePonderee);
+
+    // 👉 Étape 3 (filières) viendra ici plus tard
+  });
 
 </script>
 
