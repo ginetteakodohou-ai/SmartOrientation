@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartOrientation - Accueil</title>
+
+<!-- Police Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    /* ===== STYLE GENERAL ===== */
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: white;
+        color: #222;
+    }
+
+
+    /* ===== EN-TÊTE ===== */
+
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-color: white;
+    }
+
+    .image {
+                 width: 800px;
+                  height: auto;
+                  object-fit: cover;
+                  margin-bottom: -150px;
+                  margin-top: -80px;
+    }
+
+    /* ===== SECTION PRINCIPALE ===== */
+
+    .accueil {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    h1 {
+        font-size: 38px;
+        margin-bottom: 15px;
+    }
+
+    h1 span {
+        color: #2563eb;
+    }
+
+    .slogan {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .description {
+        max-width: 700px;
+        line-height: 1.8;
+        color: #555;
+    }
+
+
+    /* ===== BOUTON ===== */
+
+    .bouton {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 13px 25px;
+        background-color: #2563eb;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        margin-bottom: -80px;
+    }
+
+
+    /* ===== FONCTIONNALITES ===== */
+
+    .fonctionnalites {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .fonctionnalites h2 {
+        font-size: 28px;
+    }
+
+    .cartes {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .carte {
+        width: 250px;
+        padding: 25px;
+        background-color: white;
+        border-radius: 12px;
+    }
+
+    .carte h3 {
+        color: #2563eb;
+    }
+
+    .carte p {
+        line-height: 1.6;
+        color: #555;
+    }
+
+
+    /* ===== COMMENT CA MARCHE ===== */
+
+    .fonctionnement {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .fonctionnement ol {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 0;
+        list-style-position: inside;
+    }
+
+
+    /* ===== FOOTER ===== */
+
+    footer {
+        margin-top: 30px;
+        padding: 20px;
+        text-align: center;
+        background-color: white;
+        color: #666;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="accueil">
+        <img src="/image/logoSmart.png" alt="logoSmart" class="image">
+    </div>
+
+
+<!-- ACCUEIL -->
+<main>
+
+    <section class="accueil">
+
+        <!--<h1>
+            Bienvenue sur <span>SmartOrientation</span>
+        </h1> -->
+
+        <p class="slogan">
+            Choisis ton orientation pour construire ton avenir.
+        </p>
+
+        <p class="description">
+            SmartOrientation accompagne les futurs bacheliers et les
+            bacheliers dans leurs choix d'études supérieures.
+            Découvre les filières, les établissements et les opportunités
+            de bourses qui correspondent à ton profil.
+        </p>
+
+        <a href="inscription.html" class="bouton">
+            Commencer mon orientation
+        </a>
+
+    </section>
+
+
+    <!-- FONCTIONNALITES -->
+
+    <section class="fonctionnalites">
+
+        <h2>Que propose SmartOrientation ?</h2>
+
+        <div class="cartes">
+
+            <article class="carte">
+
+                <h3>🎯 Orientation personnalisée</h3>
+
+                <p>
+                    Obtiens des recommandations de filières adaptées
+                    à tes résultats scolaires, tes intérêts et tes objectifs.
+                </p>
+
+            </article>
+
+
+            <article class="carte">
+
+                <h3>🏫 Établissements</h3>
+
+                <p>
+                    Découvre les établissements d'enseignement supérieur
+                    qui proposent les formations qui t'intéressent.
+                </p>
+
+            </article>
+
+
+            <article class="carte">
+
+                <h3>🎓 Bourses</h3>
+
+                <p>
+                    Consulte les opportunités de bourses correspondant
+                    à ton profil et à ton projet d'études.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMENT ÇA MARCHE 
+
+       
+        <h2>Comment ça marche ?</h2>
+       <ol>
+
+            <li>Crée ton profil.</li>
+
+            <li>
+                Renseigne tes informations scolaires et tes préférences.
+            </li>
+
+            <li>
+                Découvre tes recommandations personnalisées.
+            </li>
+
+            <li>
+                Choisis la meilleure orientation pour ton avenir.
+            </li>
+
+        </ol> 
+        -->
+
+    </section>
+
+</main>
+
+
+<!-- PIED DE PAGE -->
+
+<footer>
+
+    <p>
+        &copy; 2026 SmartOrientation - Tous droits réservés.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
