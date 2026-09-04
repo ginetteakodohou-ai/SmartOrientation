@@ -724,7 +724,7 @@ let matieresActuelles = [];
    ENVOI DU FORMULAIRE
    ========================================== */
 
-  document.getElementById('orientationForm').addEventListener('submit', function (e) {
+  /*document.getElementById('orientationForm').addEventListener('submit', function (e) {
 
     e.preventDefault();
 
@@ -747,7 +747,65 @@ let matieresActuelles = [];
     console.log('Moyenne pondérée :', moyennePonderee);
 
     // 👉 Étape 3 (filières) viendra ici plus tard
-  });
+  });*/
+
+  document.getElementById('orientationForm').addEventListener('submit', async function (e) {
+
+  e.preventDefault();
+
+  if (matieresActuelles.length === 0) {
+    alert('Les matières correspondant à cette série ne sont pas disponibles.');
+    return;
+  }
+
+  const { valide, erreurs, notes } = validerNotes();
+
+  afficherErreurs(erreurs);
+
+  if (!valide) {
+    return;
+  }
+
+  const moyennePonderee = calculerMoyennePonderee(notes);
+
+  const serieChoisie = document.querySelector('input[name="serie"]:checked').value;
+  const moyenneGenerale = document.getElementById('moyenne').value;
+
+  const interets = Array.from(
+    document.querySelectorAll('input[name="interets"]:checked')
+  ).map(el => el.value);
+
+  const payload = {
+    serie: serieChoisie,
+    moyenne_generale: moyenneGenerale,
+    moyenne_ponderee: moyennePonderee.toFixed(2),
+    notes: notes,               // { note_1: 17, note_4: 15, ... }
+    interets: interets          // ["informatique", "mathematiques", ...]
+  };
+
+  try {
+    const response = await fetch('/orientation/analyser/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur serveur : ' + response.status);
+    }
+
+    const data = await response.json();
+
+    afficherResultats(data.filieres);  // fonction à créer, étape suivante
+
+  } catch (err) {
+    console.error(err);
+    afficherErreurs(['Une erreur est survenue lors de l\'analyse. Réessaie plus tard.']);
+  }
+});
 
 </script>
 
