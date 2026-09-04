@@ -46,3 +46,48 @@ def orientation_view(request):
     "donnees_filieres_json": donnees_filieres,}
 
     return render(request, "orientations/orientation.html", context)
+
+import json
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import Baccalaureat
+
+@require_POST
+def analyser_profil(request):
+
+    data = json.loads(request.body)
+
+    serie = data.get('serie')
+    notes = data.get('notes', {})
+    interets = data.get('interets', [])
+    moyenne_ponderee = float(data.get('moyenne_ponderee', 0))
+
+    try:
+        bac = Baccalaureat.objects.get(nom=serie)
+    except Baccalaureat.DoesNotExist:
+        return JsonResponse({'erreur': 'Série invalide'}, status=400)
+
+    # Placeholder en attendant le vrai scoring des filières
+    resultats = []
+
+    return JsonResponse({'filieres': resultats})
+
+from .calcul import calculer_scores_filieres
+
+@require_POST
+def analyser_profil(request):
+
+    data = json.loads(request.body)
+
+    serie = data.get('serie')
+    notes = data.get('notes', {})
+    interets = data.get('interets', [])
+
+    try:
+        bac = Baccalaureat.objects.get(nom=serie)
+    except Baccalaureat.DoesNotExist:
+        return JsonResponse({'erreur': 'Série invalide'}, status=400)
+
+    resultats = calculer_scores_filieres(bac, notes, interets)
+
+    return JsonResponse({'filieres': resultats})
