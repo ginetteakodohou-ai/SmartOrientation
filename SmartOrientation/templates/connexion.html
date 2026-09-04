@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion | SmartOrientation</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #26332f;
+        }
+
+
+        .page-connexion {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .conteneur {
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .entete {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            color: #2f7d6d;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .entete p {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .champ {
+            margin-bottom: 20px;
+        }
+
+        .champ label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .champ input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .champ input:focus {
+            border-color: #2f7d6d;
+        }
+
+        .oublie {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .oublie a {
+            color: #2f7d6d;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .bouton {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            margin-top: 5px;
+            border-radius: 8px;
+            background-color: #2f7d6d;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bouton:hover {
+            background-color: #1f5148;
+        }
+
+    </style>
+</head>
+<body>
+
+    <main class="page-connexion">
+        <div class="conteneur">
+
+            <div class="entete">
+                <div class="logo">
+                    SmartOrientation
+                </div>
+
+                <p>
+                    Connectez-vous à votre compte
+                    pour accéder à votre espace.
+                </p>
+
+            </div>
+            <form method="POST">
+                {% if messages %}
+                {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                <div class="champ">
+                    <label>
+                        Adresse e-mail
+                    </label>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="exemple@gmail.com"
+                        required>
+
+                </div>
+
+                <div class="champ">
+                    <label>
+                        Mot de passe
+                    </label>
+                    <input
+                        type="password"
+                        name="motdepasse"
+                        placeholder="Entrez votre mot de passe"
+                        required>
+                </div>
+                <div class="oublie">
+                    <a href="#">
+                        Mot de passe oublié ?
+                    </a>
+                </div>
+                <button
+                    type="submit"
+                    class="bouton">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

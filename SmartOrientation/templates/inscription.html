@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inscription | SmartOrientation</title>
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color:white;
+            color: #26332f;
+        }
+
+        .page-inscription {
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px 10px;
+        }
+
+        .formulaire {
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .entete {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .entete h1 {
+            color: #1f5148;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .entete p {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            color: #2f7d6d;
+            font-size: 19px;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid beige;
+        }
+
+        .champ {
+            margin-bottom: 18px;
+        }
+
+        .champ label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .champ input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .champ input:focus {
+            border-color:green;
+        }
+
+        .bouton {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background-color: #2f7d6d;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bouton:hover {
+            background-color: #1f5148;
+        }
+
+        .connexion {
+            text-align: center;
+            margin-top: 25px;
+            color: #777;
+        }
+
+        .connexion a {
+            color: #2f7d6d;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .connexion a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .formulaire {
+                padding: 25px 20px;
+            }
+        }
+
+        .message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+    }
+    </style>
+</head>
+
+<body>
+
+    <main class="page-inscription">
+        <div class="formulaire">
+
+            <div class="entete">
+                <h1>Créer un compte</h1>
+                <p>
+                    Rejoins SmartOrientation et trouve
+                    la voie qui te correspond.
+                </p>
+            </div>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+            {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <!--{{ form.as_p }}-->
+                <section class="section">
+
+                    <h2>Informations personnelles</h2>
+
+                    <div class="champ">
+                        <label for="nom">Nom</label>
+                        <input
+                            type="text"
+                            name="nom"
+                            placeholder="Entrez votre nom"
+                            required>
+                    </div>
+
+                    <div class="champ">
+                        <label for="prenom">Prénom</label>
+                        <input
+                            type="text"
+                            name="prenom"
+                            placeholder="Entrez votre prénom"
+                            required>
+                    </div>
+
+                    <div class="champ">
+                        <label>Adresse e-mail</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="exemple@gmail.com"
+                            required>
+                    </div>
+
+                </section>
+
+                <section class="section">
+
+                    <h2>Sécurité</h2>
+
+                    <div class="champ">
+                        <label>Mot de passe</label>
+                        <input
+                            type="password"
+                            name="motdepasse"
+                            placeholder="Créez un mot de passe"
+                            required>
+                    </div>
+
+                    <div class="champ">
+                        <label>
+                            Confirmer le mot de passe
+                        </label>
+
+                        <input
+                            type="password"
+                            name="confirmation"
+                            placeholder="Confirmez votre mot de passe"
+                            required>
+                    </div>
+
+                </section>
+
+                <button type="submit" class="bouton">
+                    Créer mon compte
+                </button>
+
+            </form>
+
+            <div class="connexion">
+                <p>
+                    Vous avez déjà un compte ?
+                    <a href="{% url 'connexion' %}">Se connecter</a>
+                    
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

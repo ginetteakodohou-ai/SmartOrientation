@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etablissement</title>
+    <style>
+        :root {
+            --vert: #1f7a4d;
+            --vert-fonce: #17603c;
+            --encre: #1c2521;
+            --fond: #f6f5f1;
+            --carte: #ffffff;
+            --bordure: #e2ddd2;
+        }
+        * {box-sizing:border-box;}
+        body {
+            margin: 0;
+            font-family: 'segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--fond);
+            align-items: center;
+            justify-content: center;
+            padding: 48px 20px;
+            color: var(--encre);
+            
+        }
+        .page {
+            width: 100%;
+            max-width: 780px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+        .description {
+            color: #55605a;
+            font-size: 1.05rem;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            max-width: 560px;
+        }
+        .grille {
+            display: grid;
+            grid-template-columns: 1fr 1fr;;
+            gap: 24px;
+            justify-items: center;
+            align-items: center;
+            padding-left: 200px;
+            margin-top: 80px;
+        }
+        .carte {
+            background: var(--carte);
+            border: 1px solid var(--bordure);
+            border-radius: 10px;
+            padding: 28px 20px;
+            box-shadow: 0 4px 14px rgba(28,37,33,0.08);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            transition: background-color 0.25s ease, transform 0.25s ease;
+        }
+        .carte:hover {
+            background-color: #eef6f0;
+            transform: translateY(-3px);
+        }
+        .logo {
+            width: 150px;
+            height: 100px;
+            margin-bottom: 16px;
+            border-radius: 50%;
+            background: var(--vert);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .filière{
+            background: var(--vert);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: background-color 0.25s ease;
+        }
+        .filière:hover {
+            background-color: var(--vert-fonce);
+        }
+        .m{
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+        .ka{
+            background-color: white;
+            box-shadow: 0 4px 14px rgba(28,37,33,0.08);
+            border-radius: 10px;
+            margin: 0 150px;
+            height: 700px;
+        }
+        .ta{
+            justify-content: center;
+            align-items: center;
+            margin: 60px;
+        }
+        .toi{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin: 8px 0;
+            padding-top: 80px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="ka">
+         <h1 class="toi">Faite vos choix de filière</h1>
+         <p class="ta">Félicitation pour ton BAC ! C'est le moment de choisir la voie qui va construire ton avenir. Touver la bonne filière est crucial pour ton succès académique et professionnel. Découvre toutes les opportunités d'étude supérieures disponibles au Bénin pour faire un choix éclairé pour ta carrière</p>
+
+         <div class="grille">
+             <div class="m">
+                 <div>
+                     <div class="carte">
+                         <img src="../imeg/Up.png" alt="logo" class="logo"><br>
+                         <button class="filière"> voir les filières</button>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="carte">
+                         <img src="../imeg/UAC.png" alt="logo" class="logo"><br>
+                         <button class="filière"> voir les filières</button>
+                    </div>
+                 </div>
+                 <div>
+                     <div class="carte">
+                         <img src="../imeg/UNA.png" alt="logo" class="logo"><br>
+                         <button class="filière"> voir les filières</button>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="carte">
+                         <img src="../imeg/unstim.png" alt="logo" class="logo"><br>
+                         <button class="filière"> voir les filières</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+    </div>
+    
+              
+    
+    
+
+   
+
+   
+
+    
+
+    
+    
+
+
+
+    
+</body>
+</html>
